@@ -1,14 +1,11 @@
 import SibApiV3Sdk from 'sib-api-v3-sdk';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 export const sendConfirmationEmail = async (email, confirmationToken, username) => {
+
     const defaultClient = SibApiV3Sdk.ApiClient.instance;
 
     // Configuración de la API key
     const apiKey = defaultClient.authentications['api-key'];
-console.log(process.env.BREVO_API_KEY)
     apiKey.apiKey = process.env.BREVO_API_KEY;
 
     const sendEmailWithTemplate = async (toEmail, toName, templateId, params) => {
@@ -31,7 +28,7 @@ console.log(process.env.BREVO_API_KEY)
     (async () => {
         const toEmail = email;
         const toName = username;
-        const templateId = 1; // Reemplaza con tu ID de plantilla
+        const templateId = 1;
         const params = {
             email: username,
             confirmationToken: confirmationToken
@@ -39,4 +36,4 @@ console.log(process.env.BREVO_API_KEY)
 
         await sendEmailWithTemplate(toEmail, toName, templateId, params);
     })();
-};
+}
