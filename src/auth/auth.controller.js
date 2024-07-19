@@ -59,6 +59,7 @@ export const confirmToken = async (req, res) => {
   } catch (error) {
     res.status(500).send({ error: 'Error confirmando cuenta.' });
   }
+}
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
@@ -91,8 +92,9 @@ export const login = async (req, res) => {
     if (!validPassword) {
       return res.status(400).send("wrong password");
     }
-
+   
   } catch (e) {
     res.status(500).send("Comuniquese con el administrador");
   }
 };
+
